@@ -1,0 +1,269 @@
+---
+title: "Analysis"
+author: "Miles D. Williams"
+date: "7/1/2020"
+output: html_document
+abstract: This file contains code used for data analysis for my dissertation.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+#######################
+# Script for Analysis #
+#######################
+
+# load libraries
+library(AER)
+library(tidyverse)
+library(lmtest)
+library(sandwich)
+
+# load data ---------------------------------------------------------------
+
+dt = read_csv('data/final_data.csv') 
+
+
+# estimate main model -----------------------------------------------------
+
+
+eq = ln_aid ~ ln_peer_aid_wt + ties + ln_peer_aid_wt:ties + 
+  log(income) + log(pop) + log(1+disaster) +
+  civilwar + I(-fh_total) + ln_usmil + ln_gdp +
+  donor | ln_peer_gdp + ties + ln_peer_gdp:ties + 
+  log(income) + log(pop) + log(1+disaster) + 
+  civilwar + I(-fh_total) + ln_usmil + ln_gdp +
+  donor 
+
+fit = ivreg(eq,data=dt)
+summary(fit,vcov. = vcovCL(fit,cluster=dt$dyad,'HC1'),diagnostics = T)
+
+
+# summarize the results ---------------------------------------------------
+
+library(stargazer)
+std.errors = sqrt(diag(vcovCL(fit,cluster=dt$dyad,'HC1')))
+stargazer(
+  fit,
+  se = list(std.errors),
+  omit = c('donor'),
+  caption = 'TSLS Estimates',
+  dep.var.labels = 'Bilateral ODA'
+)
+
+# meplot()
+meplot = function(model,var1,var2,int,vcov,ci=.95){
+  require(ggplot2)
+  alpha <- 1-ci
+  z <- qnorm(1-alpha/2)
+  beta.hat <- coef(model)
+  cov <- vcov
+  z0 <- seq(min(model.frame(model)[,var2],na.rm=T),
+            max(model.frame(model)[,var2],na.rm=T),
+            length.out=1000)
+  dy.dx <- beta.hat[var1] + beta.hat[int]*z0
+  se.dy.dx <- sqrt(cov[var1,var1] + 
+                     z0^2*cov[nrow(cov),ncol(cov)] + 
+                     2*z0*cov[var1,ncol(cov)])
+  upr <- dy.dx + z*se.dy.dx
+  lwr <- dy.dx - z*se.dy.dx
+  return(
+    tibble(
+      xvar = z0,
+      mareff = dy.dx,
+      upr = upr,
+      lwr = lwr
+    )
+  )
+}
+
+# show marginal effect of peer aid given ties
+extrafont::loadfonts(device='win',quiet=T)
+meplot(model=fit,var1='ln_peer_aid_wt',
+       var2='ties',int='ln_peer_aid_wt:ties',
+       vcov=vcovCL(fit,cluster=dt$dyad,'HC1')) %>%
+  ggplot() +
+  aes(xvar,mareff,
+      ymin=lwr,ymax=upr) +
+  geom_line() +
+  geom_ribbon(alpha=.5) +
+  geom_hline(yintercept=0,lty=2) +
+  labs(
+    x = 'Bilateral Ties',
+    y = 'Marginal Response to Peer ODA',
+    title = 'TSLS Estimates',
+    subtitle = 'Clustered-Boostrap CIs Shown'
+  ) +
+  theme_test() +
+  theme(
+    text=element_text('Palatino Linotype')
+  ) +
+  ggsave(
+    'figures/tsls_mareff_plot.png',
+    width=6,height=4
+  )
+
+# estimate average ODA given specialization -------------------------------
+
+obs.hi = dt %>%
+  group_by(recipient,year) %>%
+  summarize(
+    hi = sum((aid/sum(aid))^2),
+    donors = n(),
+    tot_aid = sum(aid),
+    avg_aid = tot_aid/donors,
+    income = median(income),
+    pop = median(pop),
+    fh_total = median(fh_total),
+    civilwar = median(civilwar),
+    disaster = median(disaster)
+  )
+
+m = lm(log(avg_aid) ~ I(-log(hi)) + 
+         recipient,
+       obs.hi)
+round(
+  coeftest(m,vcovCL(m,obs.hi$recipient)),
+  3
+)[2,]
+
+# visualize the results
+
+coeftest(m,vcovCL(m,obs.hi$recipient)) %>%
+  broom::tidy() %>%
+  .[2,] %>%
+  dotwhisker::dwplot() +
+  geom_vline(
+    xintercept=0,
+    lty=2
+  ) +
+  labs(
+    x='% Change in Avg. ODA\ngiven Increase in Fragmentation'
+  ) +
+  scale_y_discrete(
+    breaks=NULL
+  ) +
+  theme_bw() +
+  theme(
+    legend.position='none',
+    text=element_text(
+      family='Palatino Linotype'
+    )
+  ) +
+  ggsave(
+    'figures/avg_oda.png',
+    height=3,
+    width=4
+  )
+
+# estimate counterfactual specialization ----------------------------------
+
+library(randomForest)
+
+rf = randomForest(
+  ln_aid ~
+    ln_peer_aid + 
+    ln_peer_aid_all +
+    ln_gdp +
+    dist +
+    trade +
+    colony + 
+    ally +
+    income +
+    pop +
+    disaster +
+    civilwar +
+    fh_total +
+    ln_usmil,
+  data = dt %>%
+    mutate_at(
+      c('dist','income','pop'),
+      log
+    ) %>%
+    mutate_at(
+      c('trade','disaster'),
+      function(x)log(1+x)
+    )
+)
+
+pred_aid = predict(
+  rf,
+  newdata=dt %>%
+    mutate_at(
+      c('dist','income','pop'),
+      log
+    ) %>%
+    mutate_at(
+      c('trade','disaster'),
+      function(x)log(1+x)
+    )
+)
+pred_aid0 = predict(
+  rf,
+  newdata=dt %>%
+    mutate(
+      ln_peer_aid=0,
+      ln_peer_aid_all=0,
+    ) %>%
+    mutate_at(
+      c('dist','income','pop'),
+      log
+    ) %>%
+    mutate_at(
+      c('trade','disaster'),
+      function(x)log(1+x)
+    )
+)
+
+dt = dt %>%
+  mutate(
+    pred_aid = exp(pred_aid)-1,
+    pred_aid0 = exp(pred_aid0)-1
+  )
+
+prd.hi = dt %>%
+  group_by(recipient,year) %>%
+  summarize(
+    obs.hi = sum((aid/sum(aid))^2),
+    cft.hi = sum((pred_aid0/sum(pred_aid0))^2)
+  )
+
+m2 = lm(
+  log(obs.hi/cft.hi) ~ year - 1,
+  prd.hi %>%
+    mutate(year=as.factor(year))
+)
+
+coeftest(m2,vcovHC(m2))
+
+# visualize
+coeftest(m2,vcovHC(m2)) %>%
+  broom::tidy() %>%
+  mutate(
+    term=1995:2014
+  ) %>%
+  dotwhisker::dwplot() + 
+  geom_vline(
+    xintercept=0,
+    lty=2
+  ) +
+  labs(
+    x='% Difference in Observed vs.\nCounterfactual Specialization'
+  ) +
+  theme_bw() +
+  theme(
+    legend.position='none',
+    text=element_text(
+      family='Palatino Linotype'
+    )
+  ) +
+  ggsave(
+    'figures/specialization.png',
+    height=5,
+    width=4
+  )
+```
+
