@@ -1,0 +1,143 @@
+---
+output: 
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: temp.tex
+title: Rivalry, Collective Action, and Cooperation in International Development
+subtitle: 
+author:
+- name: Miles D. Williams
+  affiliation: University of Illinois at Urbana-Champaign
+abstract: 
+#date: "`r format(Sys.time(), '%B %d, %Y')`"
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 12pt
+spacing: double
+#spacing: onehalf
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{dcolumn}
+---
+
+# Introduction 
+
+From the Bretton Woods conference in 1944, to national security debates in the 21$\text{st}$ century, leaders of wealthy countries have long recognized that economic development and political stability go hand in hand. However, notwithstanding U.S. concerns about European economic recovery after World War II, in decades past, most leaders have not perceived underdevelopment, and the relatively localized security problems it generates, as major international threats. During the Cold War, the ideological and geopolitical standoff between the West and the Soviet Union dominated the objectives of foreign policy. Tools like foreign aid, though ostensibly intended to promote development in the neediest countries, often served other diplomatic ends---like supporting autocratic regimes loyal to the West. However, after the Cold War, and especially since the onset of the War on Terror, promoting international development has taken center stage in high level foreign policy debates within and between the world's leading industrialized states. 
+
+In a globalized world, problems in developing countries have transnational consequences. Convinced that underdeveloped parts of the world serve as incubators of extremism and insurgency; as drivers of illicit drug flows, human trafficking, mass migration, refugees, and potential pandemics; leaders of wealthy countries view economic aid as an indispensable tool in the promotion of international stability, security, and prosperity. In an interconnected world, international development and international security are inseparable.
+
+While the above foreign policy objectives have been well studied, what remains unclear is how industrialized countries' simultaneous efforts to promote international development either create opportunities for international collaboration in aid policy, or else spiral into free-riding or strategic competition for diplomatic influence. As common interest in addressing the root causes of discontent, instability, and violence in developing countries has emerged among industrialized states, this has generated repeated calls for cooperation among aid donors. Collaborative arrangements include transparency and data-sharing initiatives supported by Development Assistance Committee (DAC) members of the Organization for Economic Co-operation and Development (OECD), delegation of aid funds to multilateral agencies like the World Bank and various regional development banks, the creation of joint assistance strategies (JAS) among donor countries, and sector-wide approaches (SWAPs) among donors to pool resources in supporting sector-specific aid programs (Lawson 2013).
+
+*Have efforts to promote cooperation been successful?* When *and* where *do foreign aid donating countries succumb to myopic incentives to free-ride, exploiting the aid expenditures of peers, or else compete with the aid of geostrategic and market rivals?* 
+
+These are not new questions, but firm answers remain allusive. On the one hand, collaboration is made difficult by the fact that engaging with a low- or middle-income state to promote development is not always a politically neutral act. Leaders of donor states often expect to receive political and economic concessions in exchange for providing development resources to recipient countries. These may include market access, political favors, military alliances, and so on.\footnote{This is not to mention possible domestic gains that stem from policymakers' ability to take credit for successful aid projects.} Such goals may lead to competition among industrialized states if these benefits come at the expense of others.\footnote{For example, in an anonymous interview a German aid official once complained that Germany's position as only the seventh largest bilateral ODA donor to Bangladesh "diluted" Germany's influence in this country (Steinwand 2015).} Such competition can be inefficient, since it leads donors to give more aid than is minimally necessary to receive their desired concessions (see Bueno de Mesquita and Smith 2016), while the pursuit of nondevelopment goals can detract from the effectiveness of aid in promoting economic development (see Bearce and Tirone 2010).
+
+Aside from these strategic goals, common interest in promoting development to mitigate diffuse spillovers of developing country problems creates a classic public goods problem, generating incentives to free-ride on fellow donors. This can result in Pareto inefficient supply of aid funding by industrialized countries when donors pursue goals that benefit the entire international community. Free-riding can even be a concern in promoting strategic aims when donors have complementary geostrategic and commercial interests.
+
+To cooperate successfully, a clear understanding of the factors that facilitate ease of cooperation, and of the sources of cooperation failure, is necessary. Unfortunately, though a small but growing cadre of scholars has applied a diversity of theoretical and empirical approaches to-date to shed light on these issues, conclusive answers remain elusive. Even more, despite the relevance of collaboration in international development, the issue comprises only a narrow subset of development policy research.
+
+In this dissertation project, I intend to fill this gap in the literature. Further, moving beyond previous efforts to analyze cooperation (failure) in international development, I propose starting from a more rigorous theoretical foundation than has been considered to-date. In so doing, I will be able to more clearly identify the conditions under which free-riding, competition, and cooperation are likely to occur among industrialized countries in promoting international development. The predictions my theoretical approach generates, and the results from the empirical analyses I undertake to test these predictions, will represent a novel contribution to the literature on the political economy of international development, which has hitherto lacked a clear and well-supported statement on strategic and cooperative action among foreign aid donors.
+
+In the sections that follow in this dissertation prospectus, I first provide motivation for my research. In particular, I highlight the relevance of international development for contemporary international politics in light of increased perception by world leaders of the threat posed by poverty and political instability in developing countries. I further situate this contemporary concern in a broader context that dates back to the aftermath of World War II.
+
+Having provided necessary background details, I subsequently lay out a game theoretic model of a multi-public goods economy that I argue best captures the strategic dynamics that states face in their efforts to promote international development. I then situate my theoretical argument in reference to previous studies that address donor interactions. 
+
+After laying out the theory, I subsequently test a subset of hypotheses with dyadic panel data on the bilateral aid commitments of DAC members of the OECD. I also briefly discuss novel measures that I development to test my theoretical argument. As the results will show, patterns in aid allocation that I identify are consistent with my theoretical argument; though, much more work remains to be done. 
+
+I finally provide an overall outline of the broader dissertation project. I discuss extensions to the theoretical model that I will address in the dissertation, and additional analyses I will undertake in a series of empirical chapters. I further provide a rough timeline for completing the dissertation.
+
+\newpage
+\Large
+\setlength\parindent{-5pt}
+\textbf{References}
+\normalsize
+\doublespacing
+
+Barthel, Fabian, Eric Neumayer, Peter Nunnenkamp, and Pablo Selaya. 2014. "Competition for Export Markets and the Allocation of Foreign Aid: The Role of Spatial Dependence among Donor Countries." *World Development* 64: 350-65.
+
+Bearce, David H. and Daniel C. Tirone. 2010. "Foreign Aid Effectiveness and the Strategic Goals of Donor Governments." *Journal of Politics* 72(3): 837-51.
+
+Bermeo, Sarah B. 2016. "Aid is Not Oil: Donor Utility, Heterogeneous Aid, and the Aid-Democratization Relationship." *International Organization* 70(1): 1-32.
+
+Bermeo, Sarah B. 2018. *Targeted Development: Industrialized Country Strategy in a Globalizing World.* New York: Oxford University Press.
+
+Brautigam, Deborah A. and Stephen Knack. 2004. "Foreign Aid, Institutions, and Governance in Sub-Saharan Africa." *Economic Development and Cultural Change* 52: 255-85.
+
+Bueno de Mesquita, Bruce and Alastair Smith. 2009. "A Political Economy of Aid." *International Organization* 63(2): 309-40.
+
+Bueno de Mesquita, Bruce and Alastair Smith. 2016. "Competition and Collaboration in Aid-for-Policy Deals." *International Studies Quarterly* 60(3): 413-426.
+
+Chafer, Tony. 2005. "Chirac and 'La Francafrique': No Longer a Family Affair." *Modern and Contemporary France* 13(1): 7-23.
+
+Cornes, Richard and Jun-Ichi Itaya. 2010. "On the Private Provision of Two or More Public Goods." *Journal of Public Economic Theory* 12(2): 363-85.
+
+Davies, Ronald B. and Stephan Klasen. 2019. "Darlings and Orphans: Interactions across Donors in International Aid." *The Scandinavian Journal of Economics* 121(1): 243-77.
+
+Dudley, Leonard. 1979. "Foreign Aid and the Theory of Alliances." *The Review of Economics and Statistics* 61(4): 564-71.
+
+Dunning, Thad. 2004. "Conditioning the Effects of Aid: Cold War Politics, Donor Credibility, and Democracy in Africa." *International Organization* 58: 409-23.
+
+Fleck, Robert K. and Christopher Kilby. 2010. "Changing Aid Regimes? U.S. Foreign Aid from the Cold War to the War on Terror." *Journal of Development Economics* 91: 185-97.
+
+Friedman, Milton. 1958. "Foreign Economic Aid: Means and Objectives." *The Yale Review* 47(4): 500-16.
+
+Frot, E. and J. Santiso. 2011. "Herding in Aid Allocation." *Kyklos* 64: 54-74.
+
+Fuchs, Andreas, Peter Nunnenkamp, and Hannes Ohler. 2015. "Why Donors of Foreign Aid Do Not Coordinate: The Role of Competition for Export Markets and Political Support." *The World Economy* 38(2): 255-85.
+
+Gaddis, John Lewis. 2005. *Strategies of Containment: A Critical Appraisal of American National Security Policy During the Cold War*. Revised and expanded ed. New York Oxford University Press.
+
+Gilpin, Robert. 1987. *The Political Economy of International Relations*. Princeton: Princeton University Press.
+
+Hayter, Theresa. 1966. *French Aid*. London: Overseas Institute.
+
+Heinrich, Tobias. 2013. "When is Foreign Aid Selfish, When is it Selfless?" *Journal of Politics* 75(2): 422-35.
+
+Heinrich, Tobias, Yoshiharu Kobayashi, and Kristin A. Bryant. 2016. "Public Opinion and Foreign Aid Cuts in Economic Crises." *World Development* 77: 66-79.
+
+Holmstrom, Bengt. 1982. "Moral Hazard in Teams." *The Bell Journal of Economics* 13: 324-40.
+
+Jervis, Robert. 1992. "A Usable Past for the Future." In *The End of the Cold War: Its Meaning and Implications*. ed. M.J. Hogan. New York: Cambridge University Press.
+
+Kegley, Charles W. Jr. 1993. "The Neoidealist Moment in International Studies? Realist Myths and the New International Realities: ISA Presidential Address March 27, 1993 Acapulco, Mexico." *International Studies Quarterly* 37(2): 131-46.
+
+Keohane, Robert O. and Joseph S. Nye. 1977. *Power and Interdependence: World Politics in Transition*. Boston: Little, Brown.
+
+Kolodziej, Edward A. 1974. *French Foreign Policy under de Gaulle and Pompidou: The Politics of Grandeur.* Ithaca: Cornell University Press.
+
+Lancaster, Carol. 2008. *George Bush's Foreign Aid: Transformation or Chaos?* Washington, DC: Center for Global Development.
+
+Lawson, Marian Leonardo. 2013. "Foreign Aid: International Donor Coordination of Development Assistance." *Congressional Research Service*.
+
+Mallaby, Sebastian. 2005. *The World's Banker: A Story of Failed States, Financial Crises, and the Wealth and Poverty of Nations.* New York: Penguin Press.
+
+Mascarenhas, Raechelle and Todd Sandler. 2006. "Do Donors Cooperatively Fund Foreign Aid?" *Review of International Organizations* 1: 337-57.
+
+Morgenthau, Hans. 1962. "A Political Theory of Foreign Aid." *The American Political Science Review* 56(2): 301-9.
+
+Mosley, Paul. 1985. "The Political Economy of Foreign Aid: A Model of the Market for a Public Good." *Economic Development and Cultural Change* 33(2): 373-93.
+
+Nunnenkamp, Peter, Hannes Ohler, and Rainer Thiele. 2013. "Donor Coordination and Specialization: Did the Paris Declaration Make a Difference?" *Review of World Economics* 149: 537-63.
+
+Olson, Mancur and Richard Zeckhauser. 1966. "An Economic Theory of Alliances." *Review of Economics and Statistics* 48(3): 266-79.
+
+Pahre, Robert. 1995. "Wider and Deeper: The Links between Expansion and Integration in the European Union." In *Towards a New Europe: Stops and Starts in Regional Integration*. Eds. Gerald Schneider, Patricia A. Weitsman, and Thomas Bernauer. Westport: Praeger.
+
+Radelet, Steven. 2003. "Bush and Foreign Aid." *Foreign Affairs* 82(5): 104-17.
+
+Rahman, Aminur and Yasuyuki Sawada. 2012. "Can Donor Coordination Solve the Aid Proliferation Problem?" *Economic Letters* 116(3): 609-12.
+
+Schraeder, Peter J., Steven W. Hook, and Bruce Taylor. 1998. "Clarifying the Foreign Aid Puzzle: A Comparison of American, Japanese, French, and Swedish Aid Flows." *World Politics* 50: 294-320.
+
+Steinwand, Martin C. 2015. "Compete or Coordinate? Aid Fragmentation and Lead Donorship." *International Organization* 69(spring): 443-72.
+
+Terza, Joseph V., Anirban Basu, and Paul J. Rathouz. 2008. "Two-Stage Residual Inclusion Estimation: Addressing Endogeneity in Health Econometric Modeling." *Journal of Health Economics* 27(3): 531-43.
+
+Woods, Ngaire. 2005. "The Shifting Politics of Foreign Aid." *International Affairs* 81(2): 393-409.
+
+Woods, Randall B. 1997. *The Marshall Plan: A Fifty Year Perspective.* Lexington: George C. Marshall Foundation.
+
+Wright, Joseph. 2009. "How Foreign Aid Can Foster Democratization in Authoritarian Regimes." *American Journal of Political Science* 53(3): 552-71.
